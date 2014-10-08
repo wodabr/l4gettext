@@ -104,6 +104,9 @@ class L4gettext {
         if (!putenv('LANG=' . $localecodeset))
             throw new EnvironmentNotSetException("The given locale [$localecodeset] could not be set as environment [LANG] variable; it seems it does not exist on this system");
 
+        if (!putenv('LANGUAGE=' . $localecodeset))
+            throw new EnvironmentNotSetException("The given locale [$localecodeset] could not be set as environment [LANGUAGE] variable; it seems it does not exist on this system");
+
         // set locale - the exception is only thrown in case the app is NOT run from the command line
         // ignoring the cli creates a chicken and egg problem when attempting to fetch the installed locales/encodings,
         // since the ServiceProvider will always attempt to load the locale/encoding before the config files can even be
